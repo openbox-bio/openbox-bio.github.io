@@ -5,14 +5,14 @@ The accompanying data validation program, ruleset-engine, validates a data table
 
 ## Key Features
 
-1. ### Atomic Rules
-<br>Each rule in RuleSet targets a single aspect of your dataset. For instance, applying a "is not null" rule to a column will solely check for the presence of null values, without performing any type or format validations.
+- ### Atomic Rules
+Each rule in RuleSet targets a single aspect of your dataset. For instance, applying a "is not null" rule to a column will solely check for the presence of null values, without performing any type or format validations.
 
-2. ### Rule Stacking
-<br> You can specify multiple atomic rules for a data column. Rules are evaluated independently, and their order does not affect the outcome. A data column must pass all applicable rules to be considered valid. Successful validations are recorded with an "all OK" message in the log file.
+- ### Rule Stacking
+You can specify multiple atomic rules for a data column. Rules are evaluated independently, and their order does not affect the outcome. A data column must pass all applicable rules to be considered valid. Successful validations are recorded with an "all OK" message in the log file.
 
-3. ### Second-Order Validation
-<br> RuleSet supports cross-field validations, allowing you to define dependencies between columns. For example, you can specify: `if column A contains "John Doe," then column B must contain "1970-12-22."`
+- ### Second-Order Validation
+RuleSet supports cross-field validations, allowing you to define dependencies between columns. For example, you can specify: `if column A contains "John Doe," then column B must contain "1970-12-22."`
 
 ---
 
@@ -223,9 +223,7 @@ we hope to add additional formats like Geolocation and Currency.
 ---
 
 ## Second Order Validation
-
 Define IF-THEN validations that span two columns.
-
 **Syntax:**
 ```dsl
 conditional rule: "RuleName"
@@ -244,7 +242,9 @@ then
 column: zipcode has pattern /^\d{5}(-\d{4})?$/
 ```
 
-##Appendix
+---
+
+## Appendix
 
 ### Appendix A
 
