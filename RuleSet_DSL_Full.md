@@ -21,7 +21,7 @@ RuleSet supports cross-field validations, allowing you to define dependencies be
 1. [Set Value Rules](#set-value-rules)  
 2. [Column Rules](#column-rules)  
 3. [Value Rules](#value-rules)  
-4. [Second Order Validation](#second-order-validation)
+4. [Second Order Validation](#second-order-validation-1)
 4. [Appendix](#appendix) 
 
 ---
