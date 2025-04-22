@@ -70,7 +70,7 @@ set precision at  "0.00001"
 Specify which columns must be included, if all named columns are required and if extra columns are allowed.
 
 ### `column names in [ … ]`  
-**Description:** (Required) List exactly which columns the table must contain. *This is the only required rule in RuleSet. Every set of rules must have the column names list.** 
+**Description:** (Required) List exactly which columns the table must contain. *This is the only required rule in RuleSet. Every set of rules must have the column names list.* 
 <br>**Syntax:**  
 ```dsl
 column names in <list of column names>
@@ -134,8 +134,7 @@ See [Appendix A](#appendix-a) for accepted value types.
   ```dsl
   has format "YYYY-MM-DD"
   ```
-See [Appendix B](#appendix-b)for formats that can be specified. Note: the current formats apply only to the date-time data type. In future,
-we hope to add additional formats like Geolocation and Currency.
+See [Appendix B](#appendix-b) for formats that can be specified. Note: the current formats apply only to the date-time data type.
 
 ### Presence & Uniqueness
 - **`is required`**  
@@ -267,3 +266,4 @@ Here are the supported date-time formats that can be specified in the `has forma
 "MM-DD-YYYY hh:mm:ss AM/PM" , "YYYY/MM/DD HH:mm:ss" , "YYYY-MM-DDTHH:mm:ss.sssZ" , 
 "YYYY-MM-DDTHH:mm:ss+hh:mm" , "YYYY-MM-DD" , "MM-DD-YYYY" , "DD-MM-YYYY" , "YYYY/MM/DD" , 
 "MM/DD/YYYY", "DD/MM/YYYY" , "YYYY.MM.DD" , "MM.DD.YYYY" , "DD.MM.YYYY" , "YYYYMMDD"]`
+Other data formats for geolocation and currency data will be added in future.
