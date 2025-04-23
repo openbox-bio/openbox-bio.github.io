@@ -158,8 +158,8 @@ See [Appendix B](#appendix-b) for formats that can be specified. Note: the curre
   ```
 - **`in [ … ]`** / **`not in [ … ]`**  
   ```dsl
-  in [Active, Pending, Closed]
-  not in [Cancelled, Deleted]
+  in ['Active', 'Pending', 'Closed']
+  not in ['Cancelled', 'Deleted']
   ```
 
 ### Exact Value Comparisons
@@ -266,4 +266,4 @@ Here are the supported date-time formats that can be specified in the `has forma
 "MM-DD-YYYY hh:mm:ss AM/PM" , "YYYY/MM/DD HH:mm:ss" , "YYYY-MM-DDTHH:mm:ss.sssZ" , 
 "YYYY-MM-DDTHH:mm:ss+hh:mm" , "YYYY-MM-DD" , "MM-DD-YYYY" , "DD-MM-YYYY" , "YYYY/MM/DD" , 
 "MM/DD/YYYY", "DD/MM/YYYY" , "YYYY.MM.DD" , "MM.DD.YYYY" , "DD.MM.YYYY" , "YYYYMMDD"]`
-Other data formats for geolocation and currency data will be added in future.
+<br>Other data formats for geolocation and currency data will be added in future.
