@@ -236,9 +236,9 @@ column: <ColumnB> <ValueRuleB>
 ```dsl
 conditional rule: "US-Zip-Validation"
 if
-column: country is "USA"
+column: 'country' is "USA"
 then
-column: zipcode has pattern /^\d{5}(-\d{4})?$/
+column: 'zipcode' has pattern /^\d{5}(-\d{4})?$/
 ```
 
 ---
