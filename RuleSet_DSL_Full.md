@@ -1,6 +1,6 @@
 # RuleSet Documentation
 
-This document provides a help guide for RuleSet, a data validation language that empowers non-coding domain experts to develop, maintain and communicate data validation rules.
+This document is a help guide for RuleSet, a data validation language that non-coding domain experts can use to develop, maintain and communicate data validation rules.
 The accompanying data validation program, ruleset-engine, validates a data table against rules written in RuleSet.
 
 ## Key Features
@@ -247,7 +247,7 @@ column: zipcode has pattern /^\d{5}(-\d{4})?$/
 
 ### Appendix A
 
-Here are the value types that can be specified in the `has value type` rule.
+Value types that can be specified in the `has value type` rule.
 | Value Type     | Description                                                                 |
 | -------------- | --------------------------------------------------------------------------- |
 | string         | Text-based data (e.g., names, addresses, categories).                       |
@@ -260,7 +260,7 @@ Here are the value types that can be specified in the `has value type` rule.
 
 
 ### Appendix B
-Here are the supported date-time formats that can be specified in the `has format` rule:
+Supported date-time formats that can be specified in the `has format` rule:
 <br> `["HH:mm:ss" , "HH:mm" , "hh:mm:ss AM/PM" , "hh:mm AM/PM" , "HHmmss" , "YYYY-MM-DD HH:mm:ss" , 
 "YYYY-MM-DDTHH:mm:ss" , "YYYY-MM-DD HH:mm" , "YYYY-MM-DDTHH:mm", "DD/MM/YYYY HH:mm:ss" , 
 "MM-DD-YYYY hh:mm:ss AM/PM" , "YYYY/MM/DD HH:mm:ss" , "YYYY-MM-DDTHH:mm:ss.sssZ" , 
