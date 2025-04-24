@@ -297,7 +297,7 @@ Let's see how RuleSet can be used to write data validation rules. Given below is
 <br>
 
 Here is a simple set of rules that only specify value types for each column. 
-Note that lines starting with `//` are considered comments in RuleSet. Comments may be entered anywhere in the rules file.
+<br>Note that lines starting with `//` are considered comments in RuleSet. Comments may be entered anywhere in the rules file.
 ```dsl
 //Rules to validate squash_playsers.csv
 //These rules specify value type for each column.
