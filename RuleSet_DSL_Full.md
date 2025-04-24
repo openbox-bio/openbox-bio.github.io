@@ -17,7 +17,7 @@ RuleSet supports cross-field validations, allowing you to define dependencies be
 - ### No implicit evaluation 
 Data is never evaluated implicitly. All validation rules must be explicitly defined to be applied.
 
-With these key features, RuleSet allows you to specify data validation rules at different levels of stringency. See [Appendix C](#appendix-c) for examples.
+With these key features, RuleSet allows you to specify data validation rules at different levels of stringency; complex scenarios can be accomodated. See [Appendix C](#appendix-c) for examples.
 
 ---
 
