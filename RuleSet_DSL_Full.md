@@ -296,7 +296,8 @@ Let's see how RuleSet can be used to write data validation rules. Given below is
 | 15   | PSA8777 | Eain Yow   | Ng          | MAS     | 1998           | 38 Jalan Ampang, Kuala Lumpur    | 50450    |
 <br>
 
-Here is a simple set of rules that only specify value types for each column. Note that lines starting with `//` are considered comments in RuleSet. Comments may be entered anywhere in the rules file.
+Here is a simple set of rules that only specify value types for each column. 
+Note that lines starting with `//` are considered comments in RuleSet. Comments may be entered anywhere in the rules file.
 ```dsl
 //Rules to validate squash_playsers.csv
 //These rules specify value type for each column.
@@ -337,11 +338,12 @@ Here is a more complex, fine-grained set of rules that specify additional constr
 //Rules to validate squash_playsers.csv
 //In addition to value type these rules specify additional constraints.
 // Column ID should be unique; each value should start with 'PSA'; PSA0000 is not a valid value.
-// Column Country can have only one of the following values: 'EGY', 'PER', 'NZL', 'IND', 'MAS', 'WAL', 'ENG', 'FRA', 'SUI'.
+// Column Country can have only one of the following values:
+//'EGY', 'PER', 'NZL', 'IND', 'MAS', 'WAL', 'ENG', 'FRA', 'SUI'.
 //Column Year_of_Birth should have the format 'YYYY'
 //Conditional rules:
 //Zip for Wales should start with 'NP'
-//Zip for Egypt should be 6 characters long.
+//Zip for Egypt should be 5 characters long.
 //-------------------------------------
 
 column names in ['Rank', 'PSA_ID', 'First_Name', 'Last_Name', 'Country', 'Year_of_Birth', 'Address', 'Zip_Code']
