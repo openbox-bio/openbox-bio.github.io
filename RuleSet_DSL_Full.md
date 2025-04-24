@@ -341,7 +341,8 @@ Here is a more complex, fine-grained set of rules that specify additional constr
 // Column ID should be unique; each value should start with 'PSA'; PSA0000 is not a valid value.
 // Column Country can have only one of the following values:
 //'EGY', 'PER', 'NZL', 'IND', 'MAS', 'WAL', 'ENG', 'FRA', 'SUI'.
-//Column Year_of_Birth should have the format 'YYYY'
+//Column Year_of_Birth should have the format 'YYYY'.
+//Column Zip_Code is not null.
 //Conditional rules:
 //Zip_Code for Wales and England should be of type string.
 //Zip_Code for all other countries should be of type integer.
@@ -379,7 +380,7 @@ column: 'Address'
 has value type string
 
 column: 'Zip_Code'
-has value type string
+is not null
 
 conditional rule: 'Country-Zip1'
 if
