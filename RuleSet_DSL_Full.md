@@ -343,8 +343,8 @@ Here is a more complex, fine-grained set of rules that specify additional constr
 //'EGY', 'PER', 'NZL', 'IND', 'MAS', 'WAL', 'ENG', 'FRA', 'SUI'.
 //Column Year_of_Birth should have the format 'YYYY'
 //Conditional rules:
-//Zip for Wales should start with 'NP'
-//Zip for Egypt should be 5 characters long.
+//Zip_Code for Wales and England should be of type string.
+//Zip_Code for all other countries should be of type integer.
 //-------------------------------------
 
 column names in ['Rank', 'PSA_ID', 'First_Name', 'Last_Name', 'Country', 'Year_of_Birth', 'Address', 'Zip_Code']
