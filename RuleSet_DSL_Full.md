@@ -14,6 +14,11 @@ You can specify multiple atomic rules for a data column. Rules are evaluated ind
 - ### Second-Order Validation
 RuleSet supports cross-field validations, allowing you to define dependencies between columns. For example, you can specify: `if column A contains "John Doe," then column B must contain "1970-12-22."`
 
+- ### No implicit evaluation 
+Data is never evaluated implicitly. All validation rules must be explicitly defined to be applied.
+
+With these key features, RuleSet allows you to specify data validation rules at different levels of stringency. See [Appendix C](#appendix-c) for examples.
+
 ---
 
 ## Table of Contents
@@ -267,3 +272,113 @@ Supported date-time formats that can be specified in the `has format` rule:
 "YYYY-MM-DDTHH:mm:ss+hh:mm" , "YYYY-MM-DD" , "MM-DD-YYYY" , "DD-MM-YYYY" , "YYYY/MM/DD" , 
 "MM/DD/YYYY", "DD/MM/YYYY" , "YYYY.MM.DD" , "MM.DD.YYYY" , "DD.MM.YYYY" , "YYYYMMDD"]`
 <br>Other data formats for geolocation and currency data will be added in future.
+
+### Appendix C
+Let's see how RuleSet can be used to write data validation rules. Given below is a data table with 15 rows and 8 columns.
+<br>
+
+| Rank | PSA_ID  | First_Name | Last_Name   | Country | Year_of_Birth | Address                         | Zip_Code |
+|------|---------|------------|-------------|---------|----------------|----------------------------------|----------|
+| 1    | PSA9057 | Mostafa    | Asal        | EGY     | 2001           | 18 High St, Alexandria           | 11574    |
+| 2    | PSA9086 | Ali        | Farag       | EGY     | 1993           | 411 High St, Giza                | 11772    |
+| 3    | PSA6447 | Diego      | Elias       | PER     | 2004           | 235 Oak Dr, Cusco                | 15441    |
+| 4    | PSA1932 | Paul       | Coll        | NZL     | 1992           | 99 Beach Rd, Auckland            | 1010     |
+| 5    | PSA3884 | Marwan     | ElShorbagy  | EGY     | 1993           | 55 Nile Ave, Cairo               | 11311    |
+| 6    | PSA7765 | Tarek      | Momen       | EGY     | 1988           | 12 Lotus St, Maadi               | 11431    |
+| 7    | PSA8820 | Victor     | Crouin      | FRA     | 1999           | 45 Rue de Lyon, Paris            | 75012    |
+| 8    | PSA1399 | Joel       | Makin       | WAL     | 1994           | 73 Cardiff Rd, Newport           | NP10 8XG |
+| 9    | PSA6233 | Mazen      | Hesham      | EGY     | 1994           | 31 Zamalek St, Cairo             | 11211    |
+| 10   | PSA5431 | Youssef    | Ibrahim     | EGY     | 1999           | 23 Freedom Rd, Alexandria        | 11432    |
+| 11   | PSA4738 | Nicolas    | Mueller     | SUI     | 1989           | 90 Lake View, Zurich             | 8004     |
+| 12   | PSA3186 | Saurav     | Ghosal      | IND     | 1986           | 77 Residency Rd, Kolkata         | 700025   |
+| 13   | PSA2567 | Mohamed    | ElShorbagy  | ENG     | 1991           | 19 Queen's Walk, Bristol         | BS8 1SB  |
+| 14   | PSA9012 | Baptiste   | Masotti     | FRA     | 1995           | 12 Place du Marché, Marseille    | 13001    |
+| 15   | PSA8777 | Eain Yow   | Ng          | MAS     | 1998           | 38 Jalan Ampang, Kuala Lumpur    | 50450    |
+<br>
+
+Here is a simple set of rules that only specify value types for each column. Note that lines starting with `//` are considered comments in RuleSet. Comments may be entered anywhere in the rules file.
+```dsl
+//Rules to validate squash_playsers.csv
+//-------------------------------------
+
+column names in ['Rank', 'PSA_ID', 'First_Name', 'Last_Name', 'Country', 'Year_of_Birth', 'Address', 'Zip_Code']
+all columns required
+no extra columns allowed
+
+column: 'Rank'
+has value type integer
+
+column: 'PSA_ID'
+has value type string
+
+column: 'First_Name'
+has value type string
+
+column: 'Last_Name'
+has value type string
+
+column: 'Country'
+has value type string
+
+column: 'Year_of_Birth'
+has value type date-time
+
+column: 'Address'
+has value type string
+
+column: 'Zip_Code'
+has value type string
+
+```
+
+Here is a more complex, fine-grained set of rules that specify additional constraints.
+```dsl
+//Rules to validate squash_playsers.csv
+//-------------------------------------
+
+column names in ['Rank', 'PSA_ID', 'First_Name', 'Last_Name', 'Country', 'Year_of_Birth', 'Address', 'Zip_Code']
+all columns required
+no extra columns allowed
+
+column: 'Rank'
+has value type integer
+is > 0
+
+column: 'PSA_ID'
+has value type string
+starts with 'PSA'
+is not 'PSA0000'
+
+column: 'First_Name'
+has value type string
+
+column: 'Last_Name'
+has value type string
+
+column: 'Country'
+has value type string
+in ['EGY', 'PER', 'NZL', 'IND', 'MAS', 'WAL', 'ENG', 'FRA', 'SUI'], 
+
+column: 'Year_of_Birth'
+has value type date-time
+has format 'YYYY'
+
+column: 'Address'
+has value type string
+
+column: 'Zip_Code'
+has value type string
+
+conditional rule: 'Country-Zip1'
+if
+column: 'Country' is 'WAL'
+then
+column: 'Zip_Code' starts with 'NP'
+
+conditional rule: 'Country-Zip2'
+if
+column: 'Country' is 'EGY'
+then
+column: 'Zip_Code' has length 5
+
+```
