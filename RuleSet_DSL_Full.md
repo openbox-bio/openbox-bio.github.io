@@ -346,6 +346,7 @@ is > 0
 
 column: 'PSA_ID'
 has value type string
+is unique
 starts with 'PSA'
 is not 'PSA0000'
 
