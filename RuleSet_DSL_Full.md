@@ -300,7 +300,8 @@ Here is a simple set of rules that only specify value types for each column.
 <br>Note that lines starting with `//` are considered comments in RuleSet. Comments may be entered anywhere in the rules file.
 ```dsl
 //Rules to validate squash_playsers.csv
-//These rules specify value type for each column.
+//These rules specify value type for each column, except for Zip_Code. Why do you think I have skipped evaluating value type for
+// Zip_Code? How would you do it using RuleSet? Find out in the more complex rule specifications below.
 //-------------------------------------
 
 column names in ['Rank', 'PSA_ID', 'First_Name', 'Last_Name', 'Country', 'Year_of_Birth', 'Address', 'Zip_Code']
@@ -329,7 +330,7 @@ column: 'Address'
 has value type string
 
 column: 'Zip_Code'
-has value type string
+is not null
 
 ```
 
@@ -382,14 +383,14 @@ has value type string
 
 conditional rule: 'Country-Zip1'
 if
-column: 'Country' is 'WAL'
+column: 'Country' in ['WAL', 'ENG']
 then
-column: 'Zip_Code' starts with 'NP'
+column: 'Zip_Code' has value type string
 
 conditional rule: 'Country-Zip2'
 if
-column: 'Country' is 'EGY'
+column: 'Country' not in ['WAL', 'ENG']
 then
-column: 'Zip_Code' has length 5
+column: 'Zip_Code' has value type integer
 
 ```
