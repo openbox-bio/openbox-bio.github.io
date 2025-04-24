@@ -300,8 +300,8 @@ Here is a simple set of rules that only specify value types for each column.
 <br>Note that lines starting with `//` are considered comments in RuleSet. Comments may be entered anywhere in the rules file.
 ```dsl
 //Rules to validate squash_playsers.csv
-//These rules specify value type for each column, except for Zip_Code. Why do you think I have skipped evaluating value type for
-// Zip_Code? How would you do it using RuleSet? Find out in the more complex rule specifications below.
+//These rules specify value type for each column, except for Zip_Code. Why do you think I have skipped evaluating
+//value type for Zip_Code? How would you do it using RuleSet? Find out in the more complex rule specifications below.
 //-------------------------------------
 
 column names in ['Rank', 'PSA_ID', 'First_Name', 'Last_Name', 'Country', 'Year_of_Birth', 'Address', 'Zip_Code']
