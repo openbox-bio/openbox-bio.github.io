@@ -336,7 +336,7 @@ Here is a more complex, fine-grained set of rules that specify additional constr
 ```dsl
 //Rules to validate squash_playsers.csv
 //In addition to value type these rules specify additional constraints.
-// Column ID should be unique, each value should start with 'PSA'; PSA0000 is not a valid value.
+// Column ID should be unique; each value should start with 'PSA'; PSA0000 is not a valid value.
 // Column Country can have only one of the following values: 'EGY', 'PER', 'NZL', 'IND', 'MAS', 'WAL', 'ENG', 'FRA', 'SUI'.
 //Column Year_of_Birth should have the format 'YYYY'
 //Conditional rules:
