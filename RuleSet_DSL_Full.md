@@ -161,10 +161,10 @@ See [Appendix B](#appendix-b) for formats that can be specified. Note: the curre
   ```dsl
   has pattern /^[A-Z]{2}\d{4}$/
   ```
-- **`in [ … ]`** / **`not in [ … ]`**  
+- **`is in [ … ]`** / **`is not in [ … ]`**  
   ```dsl
-  in ['Active', 'Pending', 'Closed']
-  not in ['Cancelled', 'Deleted']
+  is in ['Active', 'Pending', 'Closed']
+  is not in ['Cancelled', 'Deleted']
   ```
 
 ### Exact Value Comparisons
@@ -300,8 +300,8 @@ Here is a simple set of rules that only specify value types for each column.
 <br>Note that lines starting with `//` are considered comments in RuleSet. Comments may be entered anywhere in the rules file.
 ```dsl
 //Rules to validate squash_playsers.csv
-//These rules specify value type for each column, except for Zip_Code. Why do you think I have skipped evaluating
-//value type for Zip_Code? How would you do it using RuleSet? Find out in the more complex rule specifications below.
+//These rules specify value type for each column, except for Zip_Code. Why do you think value type evaluation has been
+//skipped for Zip_Code? How would you do it using RuleSet? Find out in the more complex rule specifications below.
 //-------------------------------------
 
 column names in ['Rank', 'PSA_ID', 'First_Name', 'Last_Name', 'Country', 'Year_of_Birth', 'Address', 'Zip_Code']
