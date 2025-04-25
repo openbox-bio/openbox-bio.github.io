@@ -370,7 +370,7 @@ has value type string
 
 column: 'Country'
 has value type string
-in ['EGY', 'PER', 'NZL', 'IND', 'MAS', 'WAL', 'ENG', 'FRA', 'SUI'], 
+is in ['EGY', 'PER', 'NZL', 'IND', 'MAS', 'WAL', 'ENG', 'FRA', 'SUI'], 
 
 column: 'Year_of_Birth'
 has value type date-time
@@ -384,13 +384,13 @@ is not null
 
 conditional rule: 'Country-Zip1'
 if
-column: 'Country' in ['WAL', 'ENG']
+column: 'Country' is in ['WAL', 'ENG']
 then
 column: 'Zip_Code' has value type string
 
 conditional rule: 'Country-Zip2'
 if
-column: 'Country' not in ['WAL', 'ENG']
+column: 'Country' is not in ['WAL', 'ENG']
 then
 column: 'Zip_Code' has value type integer
 
