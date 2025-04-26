@@ -278,16 +278,15 @@ ruleset-engine [-h] --rules-file RULES_FILE --data-file DATA_FILE --reference-fi
 ### Appendix A
 
 Value types that can be specified in the `has value type` rule.
-| Value Type     | Description                                                                 |
-| -------------- | --------------------------------------------------------------------------- |
-| string         | Text-based data (e.g., names, addresses, categories).                       |
-| integer        | Whole numbers without decimal points (e.g., 1, 42, -10).                    |
-| floating point | Decimal numbers (e.g., 3.14, -0.01, 2.718).                                 |
-| boolean        | True/False values (e.g., true, false).                                      |
-| date-time      | Date or timestamp values (e.g., 2023-12-25, 2025-03-27T14:00:00).           |
-|                | See below for supported date-time formats.                                  |
-| scientific     | Numbers expressed in scientific notation (e.g., 1.23e-4).                   |
-| complex        | Complex numbers with real and imaginary parts (e.g., 3+4j).                 |
+| Value Type     | Description                                                                                                 |
+| -------------- | ----------------------------------------------------------------------------------------------------------- |
+| string         | Text-based data (e.g., names, addresses, categories).                                                       |
+| integer        | Whole numbers without decimal points (e.g., 1, 42, -10).                                                    |
+| floating point | Decimal numbers (e.g., 3.14, -0.01, 2.718).                                                                 |
+| boolean        | True/False values (e.g., true, false).                                                                      |
+| date-time      | Date or timestamp values (e.g., 2023-12-25, 2025-03-27T14:00:00). See below for supported date-time formats.|
+| scientific     | Numbers expressed in scientific notation (e.g., 1.23e-4).                                                   |
+| complex        | Complex numbers with real and imaginary parts (e.g., 3+4j).                                                 |
 
 
 ### Appendix B
