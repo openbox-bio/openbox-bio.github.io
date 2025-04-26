@@ -422,7 +422,7 @@ column: 'Zip_Code' has value type integer
 
 ### Appendix D
 The log file output of ruleset-engine has three levels of output messages.
-- Info: Informational messages that indicate successful operations and provide summary details:
+- Info: Informational messages indicate successful operations and provide summary details:
   - Confirmation of successful parsing of rules and data files.
   - Summary statistics of the data table, including row and column counts, and counts of missing values.
   - Notifications that all validation rules have passed without issues.
