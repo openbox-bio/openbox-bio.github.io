@@ -423,19 +423,16 @@ column: 'Zip_Code' has value type integer
 
 ### Appendix D
 The log file output of ruleset-engine has three levels of output messages.
-- Info
-  Informational messages that indicate successful operations and provide summary details:
+- Info: Informational messages that indicate successful operations and provide summary details:
   - Confirmation of successful parsing of rules and data files.
   - Summary statistics of the data table, including row and column counts, and counts of missing values.
   - Notifications that all validation rules have passed without issues.
-- Warning
-  Indicates potential issues that may not halt execution but could affect validation accuracy:
+- Warning: Indicates potential issues that may not halt execution but could affect validation accuracy:
   - Columns listed in the rules file without associated value rules.
   - Value rules defined for columns not included in the column list.
   - Absence of any value rules in the rules file.
   - Mismatch between column names in the rules file and the data file, preventing evaluation based on column order.
-- Error
-  Critical issues that prevent the validation process from proceeding correctly:
+- Error: Critical issues that prevent the validation process from proceeding correctly:
   - Invalid or inaccessible file paths for the rules, data, or reference files.
   - Errors encountered while parsing the rules file.
   - Failures during the execution of column-level, value-level, or second-order validation rules against the data.
