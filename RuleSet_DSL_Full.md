@@ -269,6 +269,7 @@ ruleset-engine [-h] --rules-file RULES_FILE --data-file DATA_FILE --reference-fi
 - Ensure that the ruleset-engine executable is located in a directory included in your system's PATH environment variable to allow for direct command-line invocation.
 - The current version of ruleset-engine accepts, .csv, .tsv and .xls(x) format data files. 
 - Data files are expected to be tabular with column-headers included. 
+- Logfile name includes a timestamp: `YYYY_MM_DD_HH_MM_SS_ruleset.log`. If no log file path is specified, log file is stored in the directory from which ruleset-engine is invoked.
 - For a detailed explanation of the log file output, refer to [Appendix D](#appendix-d).
 
 ---
@@ -284,6 +285,7 @@ Value types that can be specified in the `has value type` rule.
 | floating point | Decimal numbers (e.g., 3.14, -0.01, 2.718).                                 |
 | boolean        | True/False values (e.g., true, false).                                      |
 | date-time      | Date or timestamp values (e.g., 2023-12-25, 2025-03-27T14:00:00).           |
+|                | See below for supported date-time formats.                                  |
 | scientific     | Numbers expressed in scientific notation (e.g., 1.23e-4).                   |
 | complex        | Complex numbers with real and imaginary parts (e.g., 3+4j).                 |
 
@@ -417,4 +419,53 @@ column: 'Country' is not in ['WAL', 'ENG']
 then
 column: 'Zip_Code' has value type integer
 
+```
+
+### Appendix D
+The log file output of ruleset-engine has three levels of output messages.
+- Info
+  Informational messages that indicate successful operations and provide summary details:
+  - Confirmation of successful parsing of rules and data files.
+  - Summary statistics of the data table, including row and column counts, and counts of missing values.
+  - Notifications that all validation rules have passed without issues.
+- Warning
+  Indicates potential issues that may not halt execution but could affect validation accuracy:
+  - Columns listed in the rules file without associated value rules.
+  - Value rules defined for columns not included in the column list.
+  - Absence of any value rules in the rules file.
+  - Mismatch between column names in the rules file and the data file, preventing evaluation based on column order.
+- Error
+  Critical issues that prevent the validation process from proceeding correctly:
+  - Invalid or inaccessible file paths for the rules, data, or reference files.
+  - Errors encountered while parsing the rules file.
+  - Failures during the execution of column-level, value-level, or second-order validation rules against the data.
+
+Here is the log from validating data table in [Appendix C](#appendix-c) against the complex rule set.
+```dsl
+Info: Rules File ./squash_rules_v.1.0 is OK.
+Info: All columns in columns list have associated value rules.
+Info: All columns with at least one value rule are included in the columns list.
+Info: Data file ./top_15_squash_players_full.csv parsed as csv.
+Info: Rows:15
+Info: Columns:8
+Info: Missing Values:
+Info: Missing value count for Rank: 0
+Info: Missing value count for PSA_ID: 0
+Info: Missing value count for First_Name: 0
+Info: Missing value count for Last_Name: 0
+Info: Missing value count for Country: 0
+Info: Missing value count for Year_of_Birth: 0
+Info: Missing value count for Address: 0
+Info: Missing value count for Zip_Code: 0
+Info: All columns present in data file.
+Info: All required columns found in data file.
+Info: No extra columns included in data file.
+Info: Column: Rank all OK.
+Info: Column: PSA_ID all OK.
+Info: Column: First_Name all OK.
+Info: Column: Last_Name all OK.
+Info: Column: Country all OK.
+Info: Column: Year_of_Birth all OK.
+Info: Column: Address all OK.
+Info: Column: Zip_Code all OK.
 ```
