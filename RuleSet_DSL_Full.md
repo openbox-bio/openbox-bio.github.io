@@ -17,7 +17,7 @@ RuleSet supports cross-field validations, allowing you to define dependencies be
 - ### No implicit evaluation 
 Data is never evaluated implicitly. All validation rules must be explicitly defined to be applied.
 
-With these key features, RuleSet allows you to specify data validation rules at different levels of stringency; complex scenarios can be accomodated. See [Appendix C](#appendix-c) for examples.
+With these key features, RuleSet allows you to specify data validation rules at different levels of stringency. See [Appendix C](#appendix-c) for examples.
 
 ---
 
@@ -27,7 +27,8 @@ With these key features, RuleSet allows you to specify data validation rules at 
 2. [Column Rules](#column-rules)  
 3. [Value Rules](#value-rules)  
 4. [Second Order Validation](#second-order-validation-1)
-4. [Appendix](#appendix) 
+5. [Using ruleset-engine](#data-validation-using-ruleset-engine)
+6. [Appendix](#appendix) 
 
 ---
 
@@ -247,7 +248,30 @@ column: 'zipcode' has pattern /^\d{5}(-\d{4})?$/
 ```
 
 ---
+## Data Validation using ruleset-engine
+The ruleset-engine is a command-line utility designed to validate data tables against rules defined in the RuleSet Domain-Specific Language (DSL). Validation outcomes are recorded in a log file for review.
 
+Usage
+```dsl
+ruleset-engine [-h] --rules-file RULES_FILE --data-file DATA_FILE --reference-file REFERENCE_FILE [--logfile-path LOGFILE_PATH]
+```
+<br>**Options:**
+<br>-h, --help Display the help message and exit.
+
+<br>Required Arguments:
+<br>--rules-file RULES_FILE Path to the file containing the data validation rules.
+<br>--data-file DATA_FILE Path to the data file to be validated.
+<br>--reference-file REFERENCE_FILE Path to the reference file (e.g., RuleSet.tx.enc) that defines the RuleSet grammar.
+<br>Optional Arguments:
+<br>--logfile-path LOGFILE_PATH Directory path where the log file will be stored. If not specified, the default directory is used.
+
+<br>**Notes**
+- Ensure that the ruleset-engine executable is located in a directory included in your system's PATH environment variable to allow for direct command-line invocation.
+- The current version of ruleset-engine accepts, .csv, .tsv and .xls(x) format data files. 
+- Data files are expected to be tabular with column-headers included. 
+- For a detailed explanation of the log file output, refer to [Appendix D](#appendix-d).
+
+---
 ## Appendix
 
 ### Appendix A
@@ -296,8 +320,7 @@ Let's see how RuleSet can be used to write data validation rules. Given below is
 | 15   | PSA8777 | Eain Yow   | Ng          | MAS     | 1998           | 38 Jalan Ampang, Kuala Lumpur    | 50450    |
 <br>
 
-Here is a simple set of rules that only specify value types for each column. 
-<br>Note that lines starting with `//` are considered comments in RuleSet. Comments may be entered anywhere in the rules file.
+Here is a simple set of rules that only specify value types for each column. Note that lines starting with `//` are considered comments in RuleSet. Comments may be entered anywhere in the rules file.
 ```dsl
 //Rules to validate squash_playsers.csv
 //These rules specify value type for each column, except for Zip_Code. Why do you think value type evaluation has been
@@ -330,7 +353,7 @@ column: 'Address'
 has value type string
 
 column: 'Zip_Code'
-is not null
+has value type string
 
 ```
 
@@ -380,7 +403,7 @@ column: 'Address'
 has value type string
 
 column: 'Zip_Code'
-is not null
+has value type string
 
 conditional rule: 'Country-Zip1'
 if
