@@ -249,7 +249,7 @@ column: 'zipcode' has pattern /^\d{5}(-\d{4})?$/
 
 ---
 ## Data Validation using ruleset-engine
-The ruleset-engine is a command-line utility designed to validate data tables against rules defined in the RuleSet Domain-Specific Language (DSL). Validation outcomes are recorded in a log file for review.
+The program ruleset-engine is a command-line utility designed to validate data tables against rules defined in the RuleSet Domain-Specific Language (DSL). Validation outcomes are recorded in a log file for review.
 
 Usage
 ```dsl
