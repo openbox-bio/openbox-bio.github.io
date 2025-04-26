@@ -437,7 +437,7 @@ The log file output of ruleset-engine has three levels of output messages.
   - Errors encountered while parsing the rules file.
   - Failures during the execution of column-level, value-level, or second-order validation rules against the data.
 
-Here is the log from validating data table in [Appendix C](#appendix-c) against the complex rule set.
+Here is the log from validating data table in [Appendix C](#appendix-c) against the simple rule set.
 ```dsl
 Info: Rules File ./squash_rules_v.1.0 is OK.
 Info: All columns in columns list have associated value rules.
