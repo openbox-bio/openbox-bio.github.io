@@ -354,7 +354,7 @@ column: 'Address'
 has value type string
 
 column: 'Zip_Code'
-has value type string
+is not null
 
 ```
 
@@ -404,7 +404,7 @@ column: 'Address'
 has value type string
 
 column: 'Zip_Code'
-has value type string
+is not null
 
 conditional rule: 'Country-Zip1'
 if
