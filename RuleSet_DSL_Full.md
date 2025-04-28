@@ -321,12 +321,13 @@ Let's see how RuleSet can be used to write data validation rules. Given below is
 | 15   | PSA8777 | Eain Yow   | Ng          | MAS     | 1998           | 38 Jalan Ampang, Kuala Lumpur    | 50450    |
 <br>
 
-Here is a simple set of rules that only specify value types for each column. Note that lines starting with `//` are considered comments in RuleSet. Comments may be entered anywhere in the rules file.
+Here is a simple set of rules that only specify value types for columns. 
+<be>Note that lines starting with `//` are considered comments in RuleSet. Comments may be entered anywhere in the rules file.
 ```dsl
 //Rules to validate squash_playsers.csv
 //These rules specify value type for each column, except for Zip_Code. Why do you think value type evaluation has been
-//skipped for Zip_Code? How would you do it using RuleSet? Find out in the more complex rule specifications below.
-//-------------------------------------
+//skipped for Zip_Code? How would you do it using RuleSet? Find out below in the more complex rule specifications below.
+//-------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 column names in ['Rank', 'PSA_ID', 'First_Name', 'Last_Name', 'Country', 'Year_of_Birth', 'Address', 'Zip_Code']
 all columns required
@@ -362,15 +363,16 @@ Here is a more complex, fine-grained set of rules that specify additional constr
 ```dsl
 //Rules to validate squash_playsers.csv
 //In addition to value type these rules specify additional constraints.
+//Column Rank should be greater than 0.
 // Column ID should be unique; each value should start with 'PSA'; PSA0000 is not a valid value.
-// Column Country can have only one of the following values:
+// Column Country can have one of the following values:
 //'EGY', 'PER', 'NZL', 'IND', 'MAS', 'WAL', 'ENG', 'FRA', 'SUI'.
 //Column Year_of_Birth should have the format 'YYYY'.
 //Column Zip_Code is not null.
 //Conditional rules:
 //Zip_Code for Wales and England should be of type string.
 //Zip_Code for all other countries should be of type integer.
-//-------------------------------------
+//-------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 column names in ['Rank', 'PSA_ID', 'First_Name', 'Last_Name', 'Country', 'Year_of_Birth', 'Address', 'Zip_Code']
 all columns required
@@ -434,7 +436,7 @@ The log file output of ruleset-engine has three levels of output messages.
 - Error: Critical issues that prevent the validation process from proceeding correctly:
   - Invalid or inaccessible file paths for the rules, data, or reference files.
   - Errors encountered while parsing the rules file.
-  - Failures during the execution of column-level, value-level, or second-order validation rules against the data.
+  - Failures during execution of column-level, value-level, or second-order validation rules against the data.
 
 Here is the log from validating data table in [Appendix C](#appendix-c) against the simple rule set.
 ```dsl
