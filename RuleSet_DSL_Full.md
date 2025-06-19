@@ -1,7 +1,7 @@
 # RuleSet Documentation
 
-This document is a help guide for RuleSet, a data validation language that non-coding domain experts can use to develop, maintain and communicate data validation rules.
-The accompanying data validation program, ruleset-engine, validates a data table against rules written in RuleSet.
+This document is a help guide for `RuleSet`, a data validation language that non-coding domain experts can use to develop, maintain, and communicate data validation rules.
+The accompanying data validation program, `ruleset-engine`, validates a data table against rules written in RuleSet.
 
 ## Key Features
 
