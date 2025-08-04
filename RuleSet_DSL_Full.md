@@ -1,7 +1,7 @@
 # RuleSet Documentation
 
-This document is a help guide for `RuleSet`, a data validation language that non-coding domain experts can use to develop, maintain, and communicate data validation rules.
-The accompanying data validation program, `ruleset-engine`, validates a data table against rules written in RuleSet.
+This document is a help guide for RuleSet, a data validation language that non-coding domain experts can use to develop, maintain and communicate data validation rules.
+The accompanying data validation program, ruleset-engine, validates a data table against rules written in RuleSet.
 
 ## Key Features
 
@@ -26,9 +26,10 @@ With these key features, RuleSet allows you to specify data validation rules at 
 1. [Set Value Rules](#set-value-rules)  
 2. [Column Rules](#column-rules)  
 3. [Value Rules](#value-rules)  
-4. [Second Order Validation](#second-order-validation-1)
-5. [Using ruleset-engine](#data-validation-using-ruleset-engine)
-6. [Appendix](#appendix) 
+4. [Rule Blocks](#rule-blocks)
+5. [Second Order Validation](#second-order-validation-1)
+6. [Using ruleset-engine](#data-validation-using-ruleset-engine)
+7. [Appendix](#appendix) 
 
 ---
 
@@ -224,27 +225,45 @@ See [Appendix B](#appendix-b) for formats that can be specified. Note: the curre
   ```dsl
   has 2 decimal places
   ```
-
 ---
-
-## Second Order Validation
-Define IF-THEN validations that span two columns.
+## Rule Blocks
+Apply one or more value rules to a block of columns, reducing repitition. Multiple rule blocks may be specified.
 **Syntax:**
 ```dsl
-conditional rule: "RuleName"
-if
-column: <ColumnA> <ValueRuleA>
-then
-column: <ColumnB> <ValueRuleB>
+ruleblock: [<ColumnName_1>, <ColumnName_2>...<ColumnName_n>]
+<ValueRule1>
+<ValueRule2>
+...
 ```
 
 **Example:**
 ```dsl
-conditional rule: "US-Zip-Validation"
+ruleblock: [ "First_Name", "Last_Name", "City" ]
+has value type string
+has min length 3
+is required
+```
+
+---
+
+## Second Order Validation
+Apply rules only when a condition is met. The consequent (then) can include multiple atomic rules, each applied to specific column. Multiple `if-then` rules can be specified.
+**Syntax:**
+```dsl
+if
+column: <ColumnA> <ValueRuleA>
+then
+column: <ColumnB> <ValueRuleB>
+column: <ColumnC> <ValueRuleC>
+```
+
+**Example:**
+```dsl
 if
 column: 'country' is "USA"
 then
 column: 'zipcode' has pattern /^\d{5}(-\d{4})?$/
+column: 'state' in ['MD', 'NY', 'DE', 'VA']
 ```
 
 ---
@@ -321,13 +340,12 @@ Let's see how RuleSet can be used to write data validation rules. Given below is
 | 15   | PSA8777 | Eain Yow   | Ng          | MAS     | 1998           | 38 Jalan Ampang, Kuala Lumpur    | 50450    |
 <br>
 
-Here is a simple set of rules that only specify value types for columns. 
-<be>Note that lines starting with `//` are considered comments in RuleSet. Comments may be entered anywhere in the rules file.
+Here is a simple set of rules that only specify value types for each column. Note that lines starting with `//` are considered comments in RuleSet. Comments may be entered anywhere in the rules file.
 ```dsl
 //Rules to validate squash_playsers.csv
 //These rules specify value type for each column, except for Zip_Code. Why do you think value type evaluation has been
-//skipped for Zip_Code? How would you do it using RuleSet? Find out below in the more complex rule specifications below.
-//-------------------------------------------------------------------------------------------------------------------------------------------------------------------
+//skipped for Zip_Code? How would you do it using RuleSet? Find out in the more complex rule specifications below.
+//-------------------------------------
 
 column names in ['Rank', 'PSA_ID', 'First_Name', 'Last_Name', 'Country', 'Year_of_Birth', 'Address', 'Zip_Code']
 all columns required
@@ -363,16 +381,15 @@ Here is a more complex, fine-grained set of rules that specify additional constr
 ```dsl
 //Rules to validate squash_playsers.csv
 //In addition to value type these rules specify additional constraints.
-//Column Rank should be greater than 0.
 // Column ID should be unique; each value should start with 'PSA'; PSA0000 is not a valid value.
-// Column Country can have one of the following values:
+// Column Country can have only one of the following values:
 //'EGY', 'PER', 'NZL', 'IND', 'MAS', 'WAL', 'ENG', 'FRA', 'SUI'.
 //Column Year_of_Birth should have the format 'YYYY'.
 //Column Zip_Code is not null.
 //Conditional rules:
 //Zip_Code for Wales and England should be of type string.
 //Zip_Code for all other countries should be of type integer.
-//-------------------------------------------------------------------------------------------------------------------------------------------------------------------
+//-------------------------------------
 
 column names in ['Rank', 'PSA_ID', 'First_Name', 'Last_Name', 'Country', 'Year_of_Birth', 'Address', 'Zip_Code']
 all columns required
@@ -406,15 +423,13 @@ column: 'Address'
 has value type string
 
 column: 'Zip_Code'
-is not null
+has value type string
 
-conditional rule: 'Country-Zip1'
 if
 column: 'Country' is in ['WAL', 'ENG']
 then
 column: 'Zip_Code' has value type string
 
-conditional rule: 'Country-Zip2'
 if
 column: 'Country' is not in ['WAL', 'ENG']
 then
@@ -436,7 +451,7 @@ The log file output of ruleset-engine has three levels of output messages.
 - Error: Critical issues that prevent the validation process from proceeding correctly:
   - Invalid or inaccessible file paths for the rules, data, or reference files.
   - Errors encountered while parsing the rules file.
-  - Failures during execution of column-level, value-level, or second-order validation rules against the data.
+  - Failures during the execution of column-level, value-level, or second-order validation rules against the data.
 
 Here is the log from validating data table in [Appendix C](#appendix-c) against the simple rule set.
 ```dsl
