@@ -11,8 +11,8 @@ Each rule in RuleSet targets a single aspect of your dataset. For instance, appl
 - ### Rule Stacking
 You can specify multiple atomic rules for a data column. Rules are evaluated independently, and their order does not affect the outcome. A data column must pass all applicable rules to be considered valid. Successful validations are recorded with an "all OK" message in the log file.
 
-- ### Second-Order Validation
-RuleSet supports cross-field validations, allowing you to define dependencies between columns. For example, you can specify: `if column A contains "John Doe," then column B must contain "1970-12-22."`
+- ### Conditional Validation
+RuleSet supports conditional validations which allows you to apply validation rules only when a condition is met . For example, you can specify: `if column A contains "John Doe," then column B must contain "1970-12-22."`
 
 - ### No implicit evaluation 
 Data is never evaluated implicitly. All validation rules must be explicitly defined to be applied.
@@ -27,7 +27,7 @@ With these key features, RuleSet allows you to specify data validation rules at 
 2. [Column Rules](#column-rules)  
 3. [Value Rules](#value-rules)  
 4. [Rule Blocks](#rule-blocks)
-5. [Second Order Validation](#second-order-validation-1)
+5. [Conditional Validation](#conditional-validation-1)
 6. [Using ruleset-engine](#data-validation-using-ruleset-engine)
 7. [Appendix](#appendix) 
 
@@ -247,7 +247,7 @@ is required
 
 ---
 
-## Second Order Validation
+## Conditional Validation
 Apply rules only when a condition is met. The consequent (then) can include multiple atomic rules, each applied to specific column. Multiple `if-then` rules can be specified.
 
 **Syntax:**
