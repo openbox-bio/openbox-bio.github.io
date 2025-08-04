@@ -228,6 +228,7 @@ See [Appendix B](#appendix-b) for formats that can be specified. Note: the curre
 ---
 ## Rule Blocks
 Apply one or more value rules to a block of columns, reducing repitition. Multiple rule blocks may be specified.
+
 **Syntax:**
 ```dsl
 ruleblock: [<ColumnName_1>, <ColumnName_2>...<ColumnName_n>]
@@ -248,6 +249,7 @@ is required
 
 ## Second Order Validation
 Apply rules only when a condition is met. The consequent (then) can include multiple atomic rules, each applied to specific column. Multiple `if-then` rules can be specified.
+
 **Syntax:**
 ```dsl
 if
