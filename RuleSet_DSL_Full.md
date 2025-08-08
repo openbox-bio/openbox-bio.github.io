@@ -248,7 +248,7 @@ is required
 ---
 
 ## Conditional Validation
-Apply rules only when a condition is met. The consequent (then) can include multiple atomic rules, each applied to specific column. Multiple `if-then` rules can be specified.
+Apply rules only when a condition is met. The consequent (then) can include multiple atomic rules, each applied to specific a column. Multiple `if-then` rules can be specified.
 
 **Syntax:**
 ```dsl
