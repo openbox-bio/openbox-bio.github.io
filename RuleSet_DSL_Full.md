@@ -49,7 +49,7 @@ allowed null values in ["Not Measured", "-"]
 ```
 
 ### `thousands separator is "…"`  
-**Description:** Specify the character used to separate thousands in numeric fields.  
+**Description:** Specify the character used to separate thousands in numeric fields. Note: if you use a comma as a thousands separator, that does not need to be specified using this rule. Ruleset-engine automatically removes commas from numeric values.  
 **Syntax:**  
 ```dsl
 thousands separator is <seperator>
